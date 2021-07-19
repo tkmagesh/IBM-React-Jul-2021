@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        var count = 0;
+        function onBtnRenderClick(){
+            ++count;
+            var appEle = (
+                <div>
+                    <h1>React.js</h1>
+                    <hr/>
+                    <div>
+                        <span>Counter :</span>
+                        <span>{count}</span>
+                    </div>
+                    <section>
+                        <h3>Introduction</h3>
+                        <p>Amet commodo duis amet id consectetur laborum ut ea irure magna aliquip ipsum Lorem. Magna sunt qui est anim duis magna cupidatat laborum ipsum. Proident esse fugiat in eiusmod voluptate sit veniam eiusmod deserunt est incididunt. Proident dolor enim id cupidatat eu dolore sit.</p>
+                        <p>Exercitation proident mollit mollit Lorem ad. Elit non dolor consequat labore exercitation ut. Pariatur enim ullamco occaecat elit.</p>
+                        <p>Do sint consectetur veniam sunt exercitation. Laborum fugiat ex sint voluptate. Sint officia non nostrud dolor consectetur tempor. Ad eu do laboris nostrud minim laborum consectetur.</p>
+                    </section>
+                    <section>
+                        <h3>Advantages</h3>
+                        <ol>
+                            <li>Declarative</li>
+                            <li>Efficient</li>
+                        </ol>
+                    </section>
+                </div>
+            )
+
+            ReactDOM.render(appEle, document.getElementById('root'));
+        }
+        function onDocumentLoad(){
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick)
+        }
+        window.addEventListener('load', onDocumentLoad)
+
+    </script>
+</head>
+<body>
+    <input type="button" value="Render" id="btnRender">
+    <div id="root">
+
+    </div>
+</body>
+</html>
