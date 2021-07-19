@@ -23,3 +23,7 @@ Webpack
 
 
 RIA (Rich Internet Applications)
+
+Salary Calculator
+    1. Our implementation meets 100% functional requirements (No validations are needed).
+    2. Reorganizing the code will be taken care by another team.
