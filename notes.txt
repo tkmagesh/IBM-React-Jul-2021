@@ -1,0 +1,25 @@
+Magesh Kuppan
+
+Methodology
+    - No Powerpoint
+
+Schedule:
+    Commence    : 09:30 Hrs
+    Tea Break   : 11:00 Hrs (20 mins)
+    Lunch Break : 13:00 Hrs (1 Hr)
+    Teach Break : 15:30 Hrs (20 mins)
+    Wind up     : 17:30 Hrs
+
+About You:
+    Name
+    Experience
+    Primary Skillset
+    Experience in any JavaScript framework (Backbone.js, Angular.js, React.js, etc)
+    Any interesting book / tv show you watched recently
+
+
+Testing / Redux
+Webpack
+
+
+RIA (Rich Internet Applications)
