@@ -47,9 +47,19 @@ ES6 (ECMAScript 6/ES2015/ESNext)
     11. iterators
     12. template strings
     13. classes
-    14. Promises
-    15. Async await
+    14. Modules (later)
+    15. Promises (later)
+    16. Async await (later)
 
     http://es6-features.org/
 
-    
+    Array Methods
+        1. map
+        2. filter
+        3. reduce
+        4. forEach
+
+
+React Component
+    = Encapsulation of state + UI behavior + presentation
+
