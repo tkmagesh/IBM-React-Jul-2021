@@ -17,8 +17,16 @@
     <script type="text/babel">
         class Greeter extends React.Component{
             //state
+            state = {
+                greetMsg : '[Default greet message]'
+            };
 
             //UI behavior
+            onBtnGreetClick = () => {
+                this.setState({
+                    greetMsg : 'Welcome to React!'
+                });
+            };
 
             //presenation
             render(){
@@ -28,8 +36,8 @@
                         <hr/>
                         <label htmlFor="">User Name :</label>
                         <input type="text" name="" id=""/>
-                        <input type="button" value="Greet"/>
-                        <div className="highlight">[Message]</div>
+                        <input type="button" value="Greet" onClick={this.onBtnGreetClick}/>
+                        <div className="highlight">{this.state.greetMsg}</div>
                     </React.Fragment>
                 )
             }
