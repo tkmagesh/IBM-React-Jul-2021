@@ -44,7 +44,8 @@
                         <input type="button" value="Divide" onClick={ () => this.setState({result : n1 / n2})} />
                         {/* {resultEle} */}
                         {/* { result >= 0 ? (<div className="positive">{result}</div>) : (<div className="negative">{result}</div>)} */}
-                        { result != 0 ? resultEle : null}
+                        {/* { result != 0 ? resultEle : null} */}
+                        <div style={{color : result >= 0 ? 'green' : 'red'}}>{result}</div>
                         
                     </div>
                 )
