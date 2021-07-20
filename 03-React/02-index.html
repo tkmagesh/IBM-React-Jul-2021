@@ -35,8 +35,8 @@
                     <div>
                         <h1>Calculator</h1>
                         <hr />
-                        <input type="number" onChange={ evt => this.setState({n1 : parseInt(evt.target.value)})} />
-                        <input type="number" onChange={ evt => this.setState({n2 : parseInt(evt.target.value)})} />
+                        <input type="number" onChange={ evt => this.setState({n1 : evt.target.valueAsNumber})} />
+                        <input type="number" onChange={ evt => this.setState({n2 : evt.target.valueAsNumber})} />
                         <br />
                         <input type="button" value="Add" onClick={ () => this.setState({result : n1 + n2})} />
                         <input type="button" value="Subtract" onClick={ () => this.setState({result : n1 - n2})} />
