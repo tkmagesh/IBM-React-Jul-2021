@@ -10,21 +10,52 @@
     <script src="babel.min.js"></script>
     <script type="text/babel">
         class Products extends React.Component {
+            state = {
+                productNames : [],
+                newProductName : ''
+            }
+
+            onTxtNewProductNameChange = (evt) => {
+                this.setState({
+                    newProductName : evt.target.value
+                });
+            };
+
+            onAddNewClick = () => {
+                const { productNames, newProductName } = this.state;
+                this.setState({
+                    productNames : [...productNames, newProductName]
+                });
+            }
+
+            onRemoveClick = (idx) => {
+                const { productNames } = this.state;
+                this.setState({
+                    productNames : productNames.filter((productName, index) => index != idx )
+                });
+            }
             render(){
-                const productNames = [ 'Pen', 'Pencil', 'Marker', 'Scribble Pad' ];
+                const { productNames } = this.state;
                 /* const productItems = [];
                 for(let index = 0; index < productNames.length; index++){
                     const productName = productNames[index];
                     const productItem = (<li key={index}>{productName}</li>);
                     productItems.push(productItem);
                 } */
-                /* const productItems = productNames.map((productName, index) => (<li key={index}>{productName}</li>)) */
+                const productItems = productNames.map((productName, index) => (
+                    <li key={index}>
+                        <span> {productName} </span>
+                        <input type="button" value="Remove" onClick={ () => this.onRemoveClick(index)} />
+                    </li>
+                ))
                 return(
                     <React.Fragment>
                         <h1>Products</h1>
+                        <label>Product Name :</label>
+                        <input type="text" onChange={this.onTxtNewProductNameChange}/>
+                        <input type="button" value="Add New" onClick={this.onAddNewClick}/>
                         <ol>
-                            {/* {productItems} */}
-                            { productNames.map((productName, index) => (<li key={index}>{productName}</li>)) }
+                             {productItems}
                         </ol>
                     </React.Fragment>
                 )
