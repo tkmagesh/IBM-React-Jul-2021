@@ -15,6 +15,7 @@
         }
     </style>
     <script type="text/babel">
+
         class Greeter extends React.Component{
             //state
             state = {
@@ -24,8 +25,9 @@
 
             //UI behavior
             onBtnGreetClick = () => {
+                const { msgTemplate } = this.props;
                 this.setState({
-                    greetMsg : `Hi ${this.state.userName}, Have a nice day!`
+                    greetMsg : `Hi ${this.state.userName}, ${msgTemplate}`
                 });
             };
 
@@ -51,7 +53,10 @@
         }
 
         ReactDOM.render(
-            <Greeter/>, 
+            <div>
+                <Greeter msgTemplate="Have a nice day!"/>
+                <Greeter msgTemplate="Have a good day!" />
+            </div>,
             document.getElementById('root')
         );
     </script>
