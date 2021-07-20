@@ -28,7 +28,10 @@
                 const { msgTemplate } = this.props;
                 this.setState({
                     greetMsg : `Hi ${this.state.userName}, ${msgTemplate}`
+                }, () => {
+                    console.log(this.state.greetMsg);
                 });
+                
             };
 
             onTxtUserNameChange = (evt) => {
