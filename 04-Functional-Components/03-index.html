@@ -14,14 +14,18 @@
             const [userName, setUserName] = React.useState('')
             React.useEffect(() => {
                 console.log('Component initialized / updated [for timer]')
+                const timerId = setInterval(() => {
+                    setCurrentTime(Date())
+                }, 1000);
                 return () => {
+                    clearInterval(timerId)
                     console.log('Component destroyed [for timer]')
                 }
             }, []);
             return (
                 <div>
                 <h1>{currentTime}</h1>
-                <input type="button" value="Update Time" onClick={ () => setCurrentTime(Date())} />
+                {/* <input type="button" value="Update Time" onClick={ () => setCurrentTime(Date())} /> */}
                 </div>
             )
         }
