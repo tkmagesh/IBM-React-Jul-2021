@@ -6,6 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>State Manager</title>
     <script src="state-manager.js"></script>
+    <!-- 
+        function spinnerReducer(currentState = 0, action){
+            if (action.type === 'INCREMENT') return currentState + 1;
+            if (action.type === 'DECREMENT') return currentState - 1;
+            return currentState;
+        }
+        let store = StateManager.createStore(spinnerReducer)
+        let inc_action = { type : 'INCREMENT' },
+            dec_action = { type : 'DECREMENT' }
+        store.dispatch(inc_action)
+        store.getState()
+        1
+        store.getState()
+        1
+        store.dispatch(inc_action)
+        store.getState()
+        2
+        store.subscribe(() => console.log('current state = ', store.getState()))
+        store.dispatch(inc_action)
+        VM2013:1 current state =  3
+        store.dispatch(inc_action)
+        VM2013:1 current state =  4
+        store.dispatch(inc_action)
+        VM2013:1 current state =  5
+        store.dispatch(dec_action)
+        VM2013:1 current state =  4
+        store.dispatch(dec_action)
+        VM2013:1 current state =  3
+        store.dispatch(dec_action)
+        VM2013:1 current state =  2
+        store.dispatch(dec_action)
+        VM2013:1 current state =  1
+
+
+     -->
 </head>
 <body>
     <h1>State Manager</h1>
