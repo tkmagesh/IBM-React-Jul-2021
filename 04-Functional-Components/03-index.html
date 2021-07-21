@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifecycle hooks</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        const Timer = () => {
+            const [currentTime, setCurrentTime] = React.useState(Date())
+            const [userName, setUserName] = React.useState('')
+            React.useEffect(() => {
+                console.log('Component initialized / updated [for timer]')
+                return () => {
+                    console.log('Component destroyed [for timer]')
+                }
+            }, []);
+            return (
+                <div>
+                <h1>{currentTime}</h1>
+                <input type="button" value="Update Time" onClick={ () => setCurrentTime(Date())} />
+                </div>
+            )
+        }
+
+        const TimerContainer = () => {
+            const [showTimer, setShowTimer] = React.useState(true)
+            return (
+                <div>
+                    <label>Show Timer : </label>
+                    <input type="checkbox" checked={showTimer} onChange={evt => setShowTimer(evt.target.checked)}/>
+                    {showTimer && <Timer />}
+                </div>
+            )
+        }
+
+        ReactDOM.render(<TimerContainer/>, document.getElementById('root'))
+    </script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+</html>
