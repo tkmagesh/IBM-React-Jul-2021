@@ -63,3 +63,32 @@ ES6 (ECMAScript 6/ES2015/ESNext)
 React Component
     = Encapsulation of state + UI behavior + presentation
 
+
+
+    Class Components
+        - Object has to be created in the memory
+        - Life cycle event methods are invoked even when they are not implemented in the component class
+
+    Functional Components
+        - No objects are object (the given functions are just invoked)
+        - How to pass to props? 
+        - How to manage state?
+            - using hooks
+        - How to handle lifecycle events? 
+
+    React Hook
+        - is a function
+        - hook function name must start with 'use'
+        - builtin hooks
+            - useState
+            - useEffect
+            - useRef
+            - useReducer
+            - useLayoutEffect
+            - useMemo
+            - useCallback
+            - useContext
+        
+        - custom hooks
+            one can create their own hooks
+        

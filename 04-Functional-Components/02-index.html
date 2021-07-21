@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Intro</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        .highlight{
+            font-size: 15pt;
+            color : blue;
+        }
+    </style>
+    <script type="text/babel">
+
+        /* class Greeter extends React.Component{
+            //state
+            state = {
+                greetMsg : '[Default greet message]',
+                userName : ''
+            };
+
+            //UI behavior
+            onBtnGreetClick = () => {
+                const { msgTemplate } = this.props;
+                this.setState({
+                    greetMsg : `Hi ${this.state.userName}, ${msgTemplate}`
+                }, () => {
+                    console.log(this.state.greetMsg);
+                });
+                
+            };
+
+            onTxtUserNameChange = (evt) => {
+                this.setState({
+                    userName : evt.target.value
+                });
+            }
+
+            //presenation
+            render(){
+                return(
+                    <React.Fragment>
+                        <h1>Greeter</h1>
+                        <hr/>
+                        <label htmlFor="">User Name :</label>
+                        <input type="text" onChange={this.onTxtUserNameChange}/>
+                        <input type="button" value="Greet" onClick={this.onBtnGreetClick}/>
+                        <div className="highlight">{this.state.greetMsg}</div>
+                    </React.Fragment>
+                )
+            }
+        } */
+
+        const GreeterFC = (props) => {
+            const [userName, setUserName] = React.useState('Default UserName');
+            const [greetMsg, setGreetMsg] = React.useState('[Default greet message]');
+            const onBtnGreetClick = () => {
+                setGreetMsg(`Hi ${userName}, ${props.msgTemplate}`);
+            }
+            return(
+                <React.Fragment>
+                    <h1>Greeter</h1>
+                    <hr />
+                    <label htmlFor="">User Name :</label>
+                    <input type="text" onChange={ evt => setUserName(evt.target.value)} />
+                    <input type="button" value="Greet" onClick={onBtnGreetClick}  />
+                    <div className="highlight">{greetMsg}</div>
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(
+            <div>
+               {/*  <Greeter msgTemplate="Have a nice day!"/>
+            <Greeter msgTemplate="Have a good day!" /> */}
+                <GreeterFC msgTemplate="Have a nice day!"/>
+                <GreeterFC msgTemplate="Have a good day!" />
+            </div>,
+            document.getElementById('root')
+        );
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional Components</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+       /*  
+       class HelloWorld extends React.Component{
+            componentWillMount(){
+                console.log('componentWillMount triggered')
+            }
+            componentDidMount() {
+
+                console.log('componentDidMount triggered')
+            }
+            render(){
+                console.log('render triggered')
+                return <div>Hello World</div>
+            }
+        } 
+        */
+        /* 
+        function HelloWorld(){
+            return <div>Hello World - [FC]</div>
+        } 
+        */
+
+        /* 
+        const HelloWorld = function() {
+            return <div>Hello World - [FC]</div>
+        } 
+        */
+
+        
+        const HelloWorld =  () => {
+            let state = 100;
+            return <div>Hello World - [FC]</div>
+        } 
+        
+
+        /* 
+        const HelloWorld = () => (<div>Hello World - [FC]</div>) 
+        */
+            
+        ReactDOM.render(<HelloWorld />, document.getElementById('root'));
+    </script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+</html>
