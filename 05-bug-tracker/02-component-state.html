@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Tracker</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        body{
+            margin : 50px
+        }
+        section{
+            margin-bottom: 10px;
+        }
+        .stats, .bugname {
+            font-size : 18pt;
+        }
+        .closed{
+            color : red;
+            text-decoration: line-through;
+            font-style: italic;
+            font-weight: bold;
+        }
+        .bugname{
+            cursor: pointer;
+        }
+        ol {
+            list-style: none;
+            width : 500px;
+            -webkit-padding-start : 0px;
+        }
+        li {
+            margin-bottom: 10px;
+            padding : 10px;
+            border : 1px solid gray;
+            background-color: #e7e7e7;
+            border-radius: 5px;
+        }
+        .datetime{
+            font-style: italic;
+        }
+
+    </style>
+    <!-- 
+        Implement usecase 1 - 6 
+        Let me know whenever you implement one usecase
+    -->
+    <!-- 
+       
+     -->
+    <!-- 
+        1. Add new bugs
+        2. List the added bugs
+        3. Remove any bug
+        4. Toggle 'closed' status of any bug
+        5. Remove 'closed' bugs
+        6. Display stats (# of closed bugs / total # of bugs)
+        7. Refactor the component into smaller components
+        8. Sort the bugs
+        9. Filter the bugs
+        10. Persist the bugs in the server
+        11. Make the bugs accessible using unique URLS
+     -->
+    <script type="text/babel">
+        let currentBugId = 0;
+        const BugTracker = () => {
+            
+            const [newBugName, setNewBugName] = React.useState('');
+            const [bugs, setBugs] = React.useState([]);
+
+            const onBtnAddNewClick = () => {
+                const newBug = {
+                    id : ++currentBugId,
+                    name : newBugName,
+                    isClosed : false,
+                    createdAt : new Date()
+                };
+                setBugs([...bugs, newBug]);
+            };
+
+            const onBtnRemoveClick = (bugToRemove) => {
+                const bugsToRetain = bugs.filter(bug => bug.id !== bugToRemove.id)
+                setBugs(bugsToRetain);
+            };
+
+            const onBugNameClick = (bugToToggle) => {
+                const toggledBug = { ...bugToToggle, isClosed : !bugToToggle.isClosed };
+                const updatedBugs = bugs.map(bug => bug.id === toggledBug.id ? toggledBug : bug);
+                setBugs(updatedBugs);
+            };
+
+            const onBtnRemoveClosedClick = () => {
+                const bugsToRetain = bugs.filter(bug => !bug.isClosed);
+                setBugs(bugsToRetain);
+            };
+
+            const bugItems = bugs.map(bug => (
+                <li key={bug.id}>
+                    <span
+                        className={"bugname " + (bug.isClosed ? "closed" : "")}
+                        onClick={() => onBugNameClick(bug)}
+                    >{bug.name}</span>
+                    <div className="datetime">{bug.createdAt.toString()}</div>
+                    <input type="button" value="Remove" onClick={() => onBtnRemoveClick(bug)} />
+                </li>
+            ));
+
+            const closedCount = bugs.reduce((result, bug ) => bug.isClosed ? result + 1 : result, 0);
+
+            return (
+                <React.Fragment>
+                    <h1>Bug Tracker</h1>
+                    <hr />                
+                    <section className="stats">
+                        <span className="closed">{closedCount}</span>
+                        <span> / </span>
+                        <span>{bugs.length}</span>
+                    </section>                
+                    <section className="sort">
+                        <label htmlFor="">Order By :</label>
+                        <select name="" id="">
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                        <label htmlFor="">Descending ? :</label>
+                        <input type="checkbox" name="" id="" />
+                    </section>                
+                    <section className="edit">
+                        <label htmlFor="">Bug Name :</label>
+                        <input type="text" onChange={ evt => setNewBugName(evt.target.value)} />
+                        <input type="button" value="Add New" onClick={onBtnAddNewClick}/>
+                    </section>                
+                    <section className="list">
+                        <ol>                        
+                            {bugItems}
+                        </ol>
+                        <input type="button" value="Remove Closed" onClick={onBtnRemoveClosedClick} />
+                    </section>
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(<BugTracker/>, document.getElementById('root'));
+    </script>
+</head>
+<body>
+    <div id="root">
+        <!-- BugTracker -->
+        
+    </div>
+</body>
+</html>
