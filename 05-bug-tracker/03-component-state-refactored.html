@@ -152,7 +152,7 @@
         }
        
         const BugList = ({bugs, removeClosed, toggle, remove}) => {
-            const bugItems = bugs.map(bug => <BugItem key={bug.id}/>);
+            const bugItems = bugs.map(bug => <BugItem key={bug.id} {...{bug, toggle, remove}}/>);
             return (
                 <section className="list">
                     <ol>
@@ -163,7 +163,7 @@
             )
         }
 
-        const BugItem = () => {
+        const BugItem = ({bug, toggle, remove}) => {
             return (
                 <li key={bug.id}>
                     <span
@@ -175,7 +175,7 @@
                 </li>
             )
         };
-        
+
         ReactDOM.render(<BugTracker/>, document.getElementById('root'));
     </script>
 </head>
