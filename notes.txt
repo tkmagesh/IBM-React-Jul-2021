@@ -92,3 +92,16 @@ React Component
         - custom hooks
             one can create their own hooks
         
+
+State
+    UI State
+        - used for presentation needs of the application
+        - highly UNLIKELY that this data is needed in other parts of the application
+        - Keep this in the component state 
+
+    Application State
+        - data needed for performing core application logic
+        - highly LIKELY that this data is NEEDED in other parts of the application
+        - Keep this OUTSIDE the component
+
+        - Flex (archicture guideline from Facebook)
