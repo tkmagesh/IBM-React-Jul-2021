@@ -105,3 +105,18 @@ State
         - Keep this OUTSIDE the component
 
         - Flex (archicture guideline from Facebook)
+
+To install yarn
+    npm install yarn -g
+
+To create a react application
+    yarn create react-app bug-tracker-app
+
+To run the application
+    cd bug-tracker-app
+    yarn start
+
+ES6 Modules
+    - Anything defined in js file is considered 'private' to that file
+    - public entities need to be explicitly 'exported'
+    - public entities from other files have to be explicitly 'imported' to use
