@@ -9,36 +9,41 @@
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
     <script src="babel.min.js"></script>
-    <!-- 
-        01. initial version
-
-
-     -->
+        <!-- 
+            01. initial version
+            02. passing payload to the reducer
+            03. removing the dependency on the 'store'
+         -->
     <script type="text/babel">
         function spinnerReducer(currentState = 0, action){
-            if (action.type === 'INCREMENT') return currentState + 1;
-            if (action.type === 'DECREMENT') return currentState - 1;
+            if (action.type === 'INCREMENT') return currentState + action.payload;
+            if (action.type === 'DECREMENT') return currentState - action.payload;
             return currentState;
         }
 
         const store = StateManager.createStore(spinnerReducer);
 
-        const Spinner = ({store}) => {
-            const inc_action = { type : 'INCREMENT'},
-                dec_action = { type : 'DECREMENT' };
+        const Spinner = ({spinnerValue, dispatch}) => {
+            
+            const [delta, setDelta] = React.useState(0);
 
             const onBtnDecrementClick = () => {
-                store.dispatch(dec_action);
+                const  dec_action = { type: 'DECREMENT', payload : delta };
+                dispatch(dec_action);
             }
             const onBtnIncrementClick = () => {
-                store.dispatch(inc_action);
+                const inc_action = { type: 'INCREMENT', payload : delta };
+                dispatch(inc_action);
             }
-            const spinnerValue = store.getState();
+           
             return (
                 <React.Fragment>
                     <h1>State Manager</h1>
                     <hr/>
                     <div>
+                        <label>Delta :</label>
+                        <input type="number" value={delta} onChange={evt => setDelta(parseInt(evt.target.value)) }/>
+                        <br/>
                         <input type="button" value="Decrement" onClick={onBtnDecrementClick} />
                         <span>[ {spinnerValue} ]</span>
                         <input type="button" value="Increment" onClick={onBtnIncrementClick}/>
@@ -48,8 +53,9 @@
         }
 
         function renderApp(){
+            const spinnerValue = store.getState();
             ReactDOM.render(
-                <Spinner store={store}/>,
+                <Spinner spinnerValue={spinnerValue} dispatch={store.dispatch}/>,
                 document.getElementById('root')
             );
         }

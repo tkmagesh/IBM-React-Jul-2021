@@ -9,6 +9,11 @@
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
     <script src="babel.min.js"></script>
+        <!-- 
+            01. initial version
+            02. passing payload to the reducer
+    
+         -->
     <script type="text/babel">
         function spinnerReducer(currentState = 0, action){
             if (action.type === 'INCREMENT') return currentState + action.payload;
