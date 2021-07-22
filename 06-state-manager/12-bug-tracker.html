@@ -94,6 +94,10 @@
                 const toggledBug = { ...bugToToggle, isClosed : !bugToToggle.isClosed };
                 const action = { type : 'REPLACE_BUG' , payload : toggledBug };
                 return action;
+            },
+            remove(bugToRemove){
+                const action = { type : 'REMOVE_BUG', payload : bugToRemove };
+                return action;
             }
         };
 
@@ -104,6 +108,8 @@
                 case 'REPLACE_BUG':
                     const bugToReplace = action.payload;
                     return currentState.map(bug => bug.id === bugToReplace.id ? bugToReplace : bug);
+                case 'REMOVE_BUG':
+                    return currentState.filter(bug => bug.id !== action.payload.id)
                 default : 
                     return currentState;
             }
@@ -112,7 +118,7 @@
         const store = StateManager.createStore(bugsReducer)
         const bugActionDispatchers = StateManager.bindActionCreators(bugActionCreators, store.dispatch);
 
-        const BugTracker = ({bugs, addNew, toggle}) => {
+        const BugTracker = ({bugs, addNew, toggle, remove}) => {
             const [newBugName, setNewBugName] = React.useState('');
             const bugItems = bugs.map(bug => (
                 <li key={bug.id}>
@@ -121,7 +127,7 @@
                         onClick={() => toggle(bug)}
                     >{bug.name}</span>
                     <div className="datetime">{bug.createdAt}</div>
-                    <input type="button" value="Remove" />
+                    <input type="button" value="Remove" onClick={() => remove(bug)} />
                 </li>
             ))
             return (
