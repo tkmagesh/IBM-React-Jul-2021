@@ -55,10 +55,10 @@
     <!-- 
         (done) 1. Add new bugs
         (done) 2. List the added bugs
-        3. Remove any bug
+        (done) 3. Remove any bug
         (done) 4. Toggle 'closed' status of any bug
-        5. Remove 'closed' bugs
-        6. Display stats (# of closed bugs / total # of bugs)
+        (done) 5. Remove 'closed' bugs
+        (done) 6. Display stats (# of closed bugs / total # of bugs)
         7. Refactor the component into smaller components
         8. Sort the bugs
         9. Filter the bugs
@@ -92,11 +92,16 @@
             },
             toggle(bugToToggle){
                 const toggledBug = { ...bugToToggle, isClosed : !bugToToggle.isClosed };
-                const action = { type : 'REPLACE_BUG' , payload : toggledBug };
+                const action = { type : 'BUG_REPLACE' , payload : toggledBug };
                 return action;
             },
             remove(bugToRemove){
-                const action = { type : 'REMOVE_BUG', payload : bugToRemove };
+                const action = { type : 'BUG_REMOVE', payload : bugToRemove };
+                return action;
+            },
+            removeClosed(bugs /* TO BE FIXED */){
+                const bugsToRetain = bugs.filter(bug => !bug.isClosed)
+                const action = { type : 'BUG_INIT', payload : bugsToRetain };
                 return action;
             }
         };
@@ -105,11 +110,13 @@
             switch(action.type){
                 case 'BUG_ADD':
                     return [...currentState, action.payload];
-                case 'REPLACE_BUG':
+                case 'BUG_REPLACE':
                     const bugToReplace = action.payload;
                     return currentState.map(bug => bug.id === bugToReplace.id ? bugToReplace : bug);
-                case 'REMOVE_BUG':
+                case 'BUG_REMOVE':
                     return currentState.filter(bug => bug.id !== action.payload.id)
+                case 'BUG_INIT':
+                    return action.payload;
                 default : 
                     return currentState;
             }
@@ -118,7 +125,7 @@
         const store = StateManager.createStore(bugsReducer)
         const bugActionDispatchers = StateManager.bindActionCreators(bugActionCreators, store.dispatch);
 
-        const BugTracker = ({bugs, addNew, toggle, remove}) => {
+        const BugTracker = ({bugs, addNew, toggle, remove, removeClosed}) => {
             const [newBugName, setNewBugName] = React.useState('');
             const bugItems = bugs.map(bug => (
                 <li key={bug.id}>
@@ -129,7 +136,8 @@
                     <div className="datetime">{bug.createdAt}</div>
                     <input type="button" value="Remove" onClick={() => remove(bug)} />
                 </li>
-            ))
+            ));
+            const closedCount = bugs.reduce((result, bug) => bug.isClosed ? result + 1 : result, 0);
             return (
                 <React.Fragment>
                     {/*<!-- BugTracker -->*/}
@@ -137,7 +145,7 @@
                     <hr/>
                     {/*<!-- BugStats -->*/}
                     <section className="stats">
-                        <span className="closed">1</span>
+                        <span className="closed">{closedCount}</span>
                         <span> / </span>
                         <span>{bugs.length}</span>
                     </section>
@@ -164,7 +172,7 @@
                             {/*<!-- BugItem -->*/}
                             {bugItems}
                         </ol>
-                        <input type="button" value="Remove Closed" />
+                        <input type="button" value="Remove Closed" onClick={() => removeClosed(bugs)} />
                     </section>
                 </React.Fragment>
             )
