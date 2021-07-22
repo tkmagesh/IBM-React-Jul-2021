@@ -56,7 +56,7 @@
         (done) 1. Add new bugs
         (done) 2. List the added bugs
         3. Remove any bug
-        4. Toggle 'closed' status of any bug
+        (done) 4. Toggle 'closed' status of any bug
         5. Remove 'closed' bugs
         6. Display stats (# of closed bugs / total # of bugs)
         7. Refactor the component into smaller components
@@ -89,6 +89,11 @@
                 };
                 const action = { type : 'BUG_ADD', payload : newBug}
                 return action;
+            },
+            toggle(bugToToggle){
+                const toggledBug = { ...bugToToggle, isClosed : !bugToToggle.isClosed };
+                const action = { type : 'REPLACE_BUG' , payload : toggledBug };
+                return action;
             }
         };
 
@@ -96,6 +101,9 @@
             switch(action.type){
                 case 'BUG_ADD':
                     return [...currentState, action.payload];
+                case 'REPLACE_BUG':
+                    const bugToReplace = action.payload;
+                    return currentState.map(bug => bug.id === bugToReplace.id ? bugToReplace : bug);
                 default : 
                     return currentState;
             }
@@ -104,11 +112,14 @@
         const store = StateManager.createStore(bugsReducer)
         const bugActionDispatchers = StateManager.bindActionCreators(bugActionCreators, store.dispatch);
 
-        const BugTracker = ({bugs, addNew}) => {
+        const BugTracker = ({bugs, addNew, toggle}) => {
             const [newBugName, setNewBugName] = React.useState('');
             const bugItems = bugs.map(bug => (
                 <li key={bug.id}>
-                    <span className="bugname">{bug.name}</span>
+                    <span 
+                        className={"bugname " + (bug.isClosed ? 'closed' : '')}
+                        onClick={() => toggle(bug)}
+                    >{bug.name}</span>
                     <div className="datetime">{bug.createdAt}</div>
                     <input type="button" value="Remove" />
                 </li>
