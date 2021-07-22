@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="state-manager.js"></script>
+    <script type="text/babel">
+
+        function productsReducer(currentState=[], action){
+            switch(action.type){
+                case 'PRODUCT_ADD':
+                    return [...currentState, action.payload];
+                case 'PRODUCT_REMOVE':
+                    return currentState.filter(product => product != action.payload )
+                default :
+                    return currentState;
+            }
+        }
+        const productActionCreators = {
+            addNew(productName){
+                const action = { type : 'PRODUCT_ADD', payload : productName }
+                return action;
+            },
+            remove(productName){
+                const action = { type: 'PRODUCT_REMOVE', payload: productName }
+                return action;
+            }
+        }
+
+        const store = StateManager.createStore(productsReducer);
+        const productActionDispatchers = StateManager.bindActionCreators(productActionCreators, store.dispatch);
+
+
+        /* class Products extends React.Component {
+            state = {
+                newProductName : ''
+            }
+
+            onTxtNewProductNameChange = (evt) => {
+                this.setState({
+                    newProductName : evt.target.value
+                });
+            };
+
+            onAddNewClick = () => {
+                this.props.addNew(this.state.newProductName)
+            }
+
+            onRemoveClick = (productName) => {
+                this.props.remove(productName)
+            }
+            render(){
+                const { list } = this.props;
+                const productItems = list.map((productName, index) => (
+                    <li key={index}>
+                        <span> {productName} </span>
+                        <input type="button" value="Remove" onClick={ () => this.onRemoveClick(productName) } />
+                    </li>
+                ))
+                return(
+                    <React.Fragment>
+                        <h1>Products</h1>
+                        <label>Product Name :</label>
+                        <input type="text" onChange={this.onTxtNewProductNameChange}/>
+                        <input type="button" value="Add New" onClick={this.onAddNewClick}/>
+                        <ol>
+                             {productItems}
+                        </ol>
+                    </React.Fragment>
+                )
+            }
+        } */
+
+        const Products = ({list, addNew, remove}) => {
+            const [newProductName, setNewProductName] = React.useState('');
+            const productItems = list.map((productName, index) => (
+                <li key={index}>
+                    <span> {productName} </span>
+                    <input type="button" value="Remove" onClick={() => remove(productName)} />
+                </li>
+            ))
+            return (
+                <React.Fragment>
+                    <h1>Products</h1>
+                    <label>Product Name :</label>
+                    <input type="text" onChange={evt => setNewProductName(evt.target.value)} />
+                    <input type="button" value="Add New" onClick={() => addNew(newProductName)} />
+                    <ol>
+                        {productItems}
+                    </ol>
+                </React.Fragment>
+            )
+        };
+
+        
+        function renderApp(){
+            const products = store.getState();
+            ReactDOM.render(
+                <Products list={products} {...productActionDispatchers}/>, 
+                document.getElementById('root')
+            );
+        }
+        renderApp();
+        store.subscribe(renderApp);
+
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>

@@ -45,7 +45,7 @@
                 const productItems = productNames.map((productName, index) => (
                     <li key={index}>
                         <span> {productName} </span>
-                        <input type="button" value="Remove" onClick={ () => this.onRemoveClick(idx) } />
+                        <input type="button" value="Remove" onClick={ () => this.onRemoveClick(index) } />
                     </li>
                 ))
                 return(
