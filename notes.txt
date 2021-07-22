@@ -120,3 +120,29 @@ ES6 Modules
     - Anything defined in js file is considered 'private' to that file
     - public entities need to be explicitly 'exported'
     - public entities from other files have to be explicitly 'imported' to use
+
+application organization
+    src
+        /bugs
+            /actions
+                addNew.js
+                toggle.js
+                .
+                .
+                index.js
+            /components
+                bug-edit.jsx
+                bug-sort.jsx
+                .
+                .
+            /reducers
+                bugsReducer.js
+
+            index.js (BugTracker component)
+        /store
+            index.js (create the store)
+
+        index.js
+
+To install redux
+    yarn add redux
