@@ -170,3 +170,10 @@ React-Redux
 Redux Middleware
     Used when a common logic to be applied across all the actions
     
+
+To run the json-server
+    In the folder that has the db.json file
+    npx json-server db.json -p 3030
+
+to install axios in the application
+    yarn add axios

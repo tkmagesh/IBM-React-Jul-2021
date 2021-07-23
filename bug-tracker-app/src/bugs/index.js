@@ -9,10 +9,11 @@ import BugEdit from './components/bug-edit';
 import BugSort from './components/bug-sort';
 import BugList from './components/bug-list';
 
-const BugTracker = ({bugs, addNew, toggle, remove, removeClosed, projects}) => (
+const BugTracker = ({bugs, addNew, toggle, remove, load, removeClosed, projects}) => (
     <Fragment>
         <h3>Bugs</h3>
         <hr/>
+        <input type="button" value="LOAD BUGS" onClick={load} />
         <BugStats bugs={bugs} />
         <BugSort/>
         <BugEdit addNew={addNew} projects={projects} />
