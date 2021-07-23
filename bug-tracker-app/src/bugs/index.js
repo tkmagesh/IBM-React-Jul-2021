@@ -9,7 +9,7 @@ import BugEdit from './components/bug-edit';
 import BugSort from './components/bug-sort';
 import BugList from './components/bug-list';
 
-const BugTracker = ({bugs, addNew, toggle, remove, load, removeClosed, projects}) => {
+const BugTracker = ({bugs, addNew, toggle, remove, load, removeClosed, projects, sort}) => {
     useEffect(() => {
         load();
     }, [load])
@@ -18,7 +18,7 @@ const BugTracker = ({bugs, addNew, toggle, remove, load, removeClosed, projects}
             <h3>Bugs</h3>
             <hr/>
             <BugStats bugs={bugs} />
-            <BugSort/>
+            <BugSort sort={sort}/>
             <BugEdit addNew={addNew} projects={projects} />
             <BugList {...{bugs, toggle, remove, removeClosed}} />
         </Fragment>

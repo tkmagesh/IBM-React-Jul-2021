@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Bug - 1",
-      "isClosed": false,
+      "isClosed": true,
       "createdAt": "Fri Jul 23 2021 17:00:41 GMT+0530 (India Standard Time)",
       "projectId": "P102"
     },
@@ -17,7 +17,7 @@
     {
       "id": 3,
       "name": "Bug - 3",
-      "isClosed": false,
+      "isClosed": true,
       "createdAt": "Fri Jul 23 2021 17:00:47 GMT+0530 (India Standard Time)",
       "projectId": "P102"
     },
@@ -34,6 +34,13 @@
       "isClosed": false,
       "createdAt": "Fri Jul 23 2021 17:00:53 GMT+0530 (India Standard Time)",
       "projectId": "P101"
+    },
+    {
+      "id": 6,
+      "name": "Bug - 6",
+      "isClosed": false,
+      "createdAt": "Fri Jul 23 2021 17:04:44 GMT+0530 (India Standard Time)",
+      "projectId": 0
     }
   ],
   "projects": [
