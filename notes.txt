@@ -205,3 +205,17 @@ Webpack
 
     webpack-dev-server
         web server for development purposes
+
+to localize webpack configuration
+    yarn eject
+
+
+Reference:
+    Tutorial
+    https://fullstackopen.com/en/
+
+    Reference Implementation
+    https://github.com/gothinkster/realworld
+
+    Awesome React
+    https://github.com/enaqx/awesome-react
