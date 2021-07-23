@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import bugActionCreators from './actions';
@@ -9,17 +9,21 @@ import BugEdit from './components/bug-edit';
 import BugSort from './components/bug-sort';
 import BugList from './components/bug-list';
 
-const BugTracker = ({bugs, addNew, toggle, remove, load, removeClosed, projects}) => (
-    <Fragment>
-        <h3>Bugs</h3>
-        <hr/>
-        <input type="button" value="LOAD BUGS" onClick={load} />
-        <BugStats bugs={bugs} />
-        <BugSort/>
-        <BugEdit addNew={addNew} projects={projects} />
-        <BugList {...{bugs, toggle, remove, removeClosed}} />
-    </Fragment>
-);
+const BugTracker = ({bugs, addNew, toggle, remove, load, removeClosed, projects}) => {
+    useEffect(() => {
+        load();
+    }, [load])
+    return (
+        <Fragment>
+            <h3>Bugs</h3>
+            <hr/>
+            <BugStats bugs={bugs} />
+            <BugSort/>
+            <BugEdit addNew={addNew} projects={projects} />
+            <BugList {...{bugs, toggle, remove, removeClosed}} />
+        </Fragment>
+    );
+}
 
 function mapStateToProps(storeState){
     //extract the data from the storeState to be passed as props to the component
