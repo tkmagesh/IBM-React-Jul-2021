@@ -155,3 +155,15 @@ Assignments
 
     Study about ES6 Promise
         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+
+React-Redux
+    yarn add react-redux
+    
+    Adapters for React & Redux
+        - connect
+            encapsulate the logic for extracting state and creating action dispatchers to be passed as props to the component
+
+        - Provider
+
+    

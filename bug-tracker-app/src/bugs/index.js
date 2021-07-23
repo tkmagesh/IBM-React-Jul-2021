@@ -1,4 +1,8 @@
 import { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import bugActionCreators from './actions';
+
 import './index.css';
 import BugStats from './components/bug-stats';
 import BugEdit from './components/bug-edit';
@@ -15,4 +19,16 @@ const BugTracker = ({bugs, addNew, toggle, remove, removeClosed}) => (
         <BugList {...{bugs, toggle, remove, removeClosed}} />
     </Fragment>
 );
-export default BugTracker;
+
+function mapStateToProps(storeState){
+    //extract the data from the storeState to be passed as props to the component
+    const bugs = storeState.bugsState;
+    return { bugs : bugs };
+}
+
+function mapDispatchToProps(dispatch){
+    const bugActionDispatchers = bindActionCreators(bugActionCreators, dispatch);
+    return bugActionDispatchers;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BugTracker);
