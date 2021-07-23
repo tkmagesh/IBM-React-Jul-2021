@@ -1,7 +1,7 @@
 //import axios from 'axios';
 import bugApi from '../services/bugApi'
 
-function getLocalBugs(){
+/* function getLocalBugs(){
     return [
         {
             id : 1,
@@ -18,7 +18,7 @@ function getLocalBugs(){
             projectId : 1
         },
     ]
-}
+} */
 
 /* function load(){
     return function(dispatch){

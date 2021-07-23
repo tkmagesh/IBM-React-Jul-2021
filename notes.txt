@@ -179,3 +179,29 @@ to install axios in the application
     yarn add axios
 
 yarn add redux-logger redux-thunk
+
+Build
+    1. JSX to JS
+    2. Minify the JS
+    3. Uglify the JS
+    4. Bundle the JS
+    5. Version the JS file
+    6. Minify the CSS
+    7. Bundle the CSS
+    8. Version the CSS
+    9. Update the references of the generated files in the index.html
+    10. Minify the index.html
+
+Webpack
+    loaders
+        - babel-loader
+        - css-loader
+        - file-loader
+        - html-loader
+        - react-loader
+
+    plugins
+        - Image Optimization
+
+    webpack-dev-server
+        web server for development purposes
