@@ -58,8 +58,9 @@
         console.log(`[@client] invoking the service`)
         var result = await addAsyncPromise(100,200)
         console.log(`[@client] result = ${result}`)
-        let doubleResult = result * 2;
+        var doubleResult = result * 2;
         return doubleResult;
+       
     }
 
     window['addAsyncPromiseClient'] = addAsyncPromiseClient;
