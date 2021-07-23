@@ -13,7 +13,7 @@ const Projects = ({projects, addNew}) => {
         <ol>
             { projects.map(project => (
                 <li key={project.id}>
-                    <span class="projectName">{project.name}</span>
+                    <span className="projectName">{project.name}</span>
                     <div>[Id - {project.id}]</div>
                 </li>
             ))}

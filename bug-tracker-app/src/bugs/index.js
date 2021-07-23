@@ -7,7 +7,7 @@ import BugList from './components/bug-list';
 
 const BugTracker = ({bugs, addNew, toggle, remove, removeClosed}) => (
     <Fragment>
-        <h1>Bug Tracker</h1>
+        <h3>Bugs</h3>
         <hr/>
         <BugStats bugs={bugs} />
         <BugSort/>
