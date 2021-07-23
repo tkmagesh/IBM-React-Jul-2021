@@ -20,6 +20,11 @@ function getLocalBugs(){
 }
 
 function load(){
+    /* loading bugs from the server */
+    axios.get('http://localhost:3030/bugs')
+        .then(response => response.data)
+        .then(bugs => console.table(bugs));
+        
     const bugs = getLocalBugs();
     const action = { type : 'BUG_INIT', payload : bugs }
     return action;
