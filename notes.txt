@@ -166,4 +166,7 @@ React-Redux
 
         - Provider
 
+
+Redux Middleware
+    Used when a common logic to be applied across all the actions
     
