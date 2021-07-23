@@ -9,17 +9,28 @@ import store from './store';
 
 import BugTracker from './bugs'
 import Projects from './projects';
+import Home from './Home';
 
-import axios from 'axios';
-window['axios'] = axios;
-
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 
 ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <h1>Bug Tracker</h1>
-        <Projects/>
-        <BugTracker/>
+        <Router>
+          <h1>Bug Tracker</h1>
+          <div>
+            <span> [ <Link to="/"> Home </Link> ] </span>
+            <span> [ <Link to="/bugs"> Bugs </Link> ] </span>
+            <span> [ <Link to="/projects"> Projects </Link> ] </span>
+          </div>
+          <div>
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/bugs" component={BugTracker}/>
+              <Route path="/projects" component={Projects}/>
+            </Switch>
+          </div>
+        </Router>
       </Provider>
     </React.StrictMode>, 
     document.getElementById('root')

@@ -1,5 +1,41 @@
 {
-  "bugs": [],
+  "bugs": [
+    {
+      "id": 1,
+      "name": "Bug - 1",
+      "isClosed": false,
+      "createdAt": "Fri Jul 23 2021 17:00:41 GMT+0530 (India Standard Time)",
+      "projectId": "P102"
+    },
+    {
+      "id": 2,
+      "name": "Bug - 2",
+      "isClosed": false,
+      "createdAt": "Fri Jul 23 2021 17:00:45 GMT+0530 (India Standard Time)",
+      "projectId": "P102"
+    },
+    {
+      "id": 3,
+      "name": "Bug - 3",
+      "isClosed": false,
+      "createdAt": "Fri Jul 23 2021 17:00:47 GMT+0530 (India Standard Time)",
+      "projectId": "P102"
+    },
+    {
+      "id": 4,
+      "name": "Bug - 4",
+      "isClosed": false,
+      "createdAt": "Fri Jul 23 2021 17:00:51 GMT+0530 (India Standard Time)",
+      "projectId": "P101"
+    },
+    {
+      "id": 5,
+      "name": "Bug - 5",
+      "isClosed": false,
+      "createdAt": "Fri Jul 23 2021 17:00:53 GMT+0530 (India Standard Time)",
+      "projectId": "P101"
+    }
+  ],
   "projects": [
     {
       "id": 1,
