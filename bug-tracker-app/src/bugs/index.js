@@ -9,13 +9,13 @@ import BugEdit from './components/bug-edit';
 import BugSort from './components/bug-sort';
 import BugList from './components/bug-list';
 
-const BugTracker = ({bugs, addNew, toggle, remove, removeClosed}) => (
+const BugTracker = ({bugs, addNew, toggle, remove, removeClosed, projects}) => (
     <Fragment>
         <h3>Bugs</h3>
         <hr/>
         <BugStats bugs={bugs} />
         <BugSort/>
-        <BugEdit addNew={addNew} />
+        <BugEdit addNew={addNew} projects={projects} />
         <BugList {...{bugs, toggle, remove, removeClosed}} />
     </Fragment>
 );
@@ -23,7 +23,8 @@ const BugTracker = ({bugs, addNew, toggle, remove, removeClosed}) => (
 function mapStateToProps(storeState){
     //extract the data from the storeState to be passed as props to the component
     const bugs = storeState.bugsState;
-    return { bugs : bugs };
+    const projects = storeState.projectsState;
+    return { bugs : bugs, projects : projects };
 }
 
 function mapDispatchToProps(dispatch){

@@ -4,7 +4,7 @@ const BugItem = ({bug, toggle, remove}) => (
             className={"bugname " + (bug.isClosed ? 'closed' : '')}
             onClick={() => toggle(bug)}
         >{bug.name}</span>
-        <div>Project Id : [project id]</div>
+        <div>Project Id : [{bug.projectId}]</div>
         <div className="datetime">{bug.createdAt}</div>
         <input type="button" value="Remove" onClick={() => remove(bug)} />
     </li>
