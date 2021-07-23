@@ -177,3 +177,5 @@ To run the json-server
 
 to install axios in the application
     yarn add axios
+
+yarn add redux-logger redux-thunk
