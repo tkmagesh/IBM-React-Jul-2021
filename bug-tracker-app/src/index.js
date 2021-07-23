@@ -7,16 +7,25 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import store from './store';
+
+/* 
 import BugTracker from './bugs'
 import bugActionCreators from './bugs/actions';
+const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch); 
+*/
 
-const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
+import Projects from './projects';
+import projectActionCreators from './projects/actions';
+const projectActionDispatchers = bindActionCreators(projectActionCreators, store.dispatch);
 
 function renderApp(){
-    const bugs = store.getState();
+    //const bugs = store.getState();
+    const projects = store.getState();
+
     ReactDOM.render(
         <React.StrictMode>
-          <BugTracker bugs={bugs} {...bugActionDispatchers}/>
+          {/* <BugTracker bugs={bugs} {...bugActionDispatchers}/> */}
+          <Projects projects={projects} {...projectActionDispatchers} />
         </React.StrictMode>, 
         document.getElementById('root')
     );
